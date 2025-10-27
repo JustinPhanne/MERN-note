@@ -11,7 +11,7 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5001;
-const __dirname = path.resolve();
+const __dirname = path.resolve(); // to get current directory name
 
 // middleware
 if (process.env.NODE_ENV !== "production") {
@@ -32,9 +32,12 @@ app.use(rateLimiter);
 
 app.use("/api/notes", notesRoutes);
 
+// Serve static assets if in production
 if (process.env.NODE_ENV === "production") {
+  // Set static folder to serve frontend build files
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
+  // Handle SPA routing, return index.html for all other requests
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
   });
