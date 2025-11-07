@@ -22,3 +22,4 @@ This app allows users to create, view, and delete notes, demonstrating CRUD func
 ```bash
 git clone https://github.com/yourusername/mern-thinkboard.git
 cd mern-thinkboard
+link to website: https://mern-note-p7pt.onrender.com/
